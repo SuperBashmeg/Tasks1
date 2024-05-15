@@ -2,18 +2,16 @@
 using namespace std;
 
 int main() {
-	int sum = 0;
 	const int SIZE = 6;
-	int income[SIZE];
+	int arr[SIZE];
 	for (size_t i = 0; i < SIZE; i++)
 	{
-		cout << "Enter income for " << i + 1 << " month: ";
-		cin >> income[i];
+		cout << "Enter " << i + 1 << "s number: ";
+		cin >> arr[i];
 	}
-	for (size_t i = 0; i < SIZE; i++)
+	for (size_t i = SIZE; i > 0; i--)
 	{
-		sum += income[i];
-	}
-	cout << "Total income: " << sum << endl;
+		cout << arr[i-1] << ' ';
+	} cout << endl;
 	return 0;
 }
