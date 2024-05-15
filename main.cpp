@@ -1,24 +1,34 @@
 #include <iostream>
 using namespace std;
 
+void printArray(int arr[], int size) {
+	for (size_t i = 0; i < size; i++)
+	{
+		cout << i << "-" << arr[i] << " ; ";
+	} cout << endl;
+	
+
+}
+
 int main() {
 	const int SIZE = 12;
-	int income[SIZE];
+	int numbers[SIZE];
+	srand(time(0));
 	for (size_t i = 0; i < SIZE; i++)
 	{
-		cout << "Enter income for " << i + 1 << " month: ";
-		cin >> income[i];
+		numbers[i] = rand() % 2000 - 1000;
 	}
-	int max = income[0], min = income[0];
+	printArray(numbers, SIZE);
+	int max = numbers[0], min = numbers[0];
 	for (size_t i = 0; i < SIZE; i++)
 	{
-		if (income[i] > max) {
-			max = income[i];
+		if (numbers[i] > max) {
+			max = numbers[i];
 		}
-		if (income[i] < min) {
-			min = income[i];
+		if (numbers[i] < min) {
+			min = numbers[i];
 		}
 	}
-	cout << "Max monthly income: " << max << "; Min monthly income " << min << endl;
+	cout << "Max number: " << max << "; Min number " << min << endl;
 	return 0;
 }
