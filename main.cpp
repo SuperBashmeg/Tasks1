@@ -3,17 +3,17 @@ using namespace std;
 
 int main() {
 	int sum = 0;
-	const int SIZE = 6;
-	int income[SIZE];
+	const int SIZE = 5;
+	int sides[SIZE];
 	for (size_t i = 0; i < SIZE; i++)
 	{
-		cout << "Enter income for " << i + 1 << " month: ";
-		cin >> income[i];
+		cout << "Enter length for " << i + 1 << " side: ";
+		cin >> sides[i];
 	}
 	for (size_t i = 0; i < SIZE; i++)
 	{
-		sum += income[i];
+		sum += sides[i];
 	}
-	cout << "Total income: " << sum << endl;
+	cout << "Perimeter: " << sum << endl;
 	return 0;
 }
