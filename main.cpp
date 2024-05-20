@@ -2,70 +2,38 @@
 using namespace std;
 
 int main() {
-	const int SIZE = 5;
+	const int SIZE = 10;
 	int currentSize = SIZE;
-	int arr[SIZE] = { 1, 0, 2, 3, 4 };
-	int arr2[SIZE] = { -3, 8, -1, 2, 0 };
-	int globalArray[SIZE * 2];
-	int globalCurrentSize = 0;
-
-	int index;
-	for (size_t i = 0; i < SIZE; i++)
-	{
-		if (arr[i] > 0)
-		{
-			globalArray[globalCurrentSize] = arr[i];
-			globalCurrentSize++;
-		}
-	}
-	for (size_t i = 0; i < SIZE; i++)
-	{
-		if (arr2[i] > 0)
-		{
-			globalArray[globalCurrentSize] = arr2[i];
-			globalCurrentSize++;
-		}
-	}
+	int arr[SIZE/2];
+	int arr2[SIZE/2];
+	int globalArray[SIZE] = { 1, 0, 2, 3, 4, -3, 8, -1, 2, 0 };
 
 	for (size_t i = 0; i < SIZE; i++)
 	{
-		if (arr[i] == 0)
+		if (i < 5)
 		{
-			globalArray[globalCurrentSize] = arr[i];
-			globalCurrentSize++;
+			arr[i] = globalArray[i];
+		}
+		else
+		{
+			arr2[i - 5] = globalArray[i];
 		}
 	}
-
+	
 	for (size_t i = 0; i < SIZE; i++)
 	{
-		if (arr2[i] == 0)
+		if (i < 5)
 		{
-			globalArray[globalCurrentSize] = arr2[i];
-			globalCurrentSize++;
+			if (i == 0) { cout << "First array: "; }
+			cout << arr[i] << " ";
+			if (i == 4) { cout << endl; }
 		}
-	}
-
-	for (size_t i = 0; i < SIZE; i++)
-	{
-		if (arr[i] < 0)
+		else
 		{
-			globalArray[globalCurrentSize] = arr[i];
-			globalCurrentSize++;
+			if (i == 5) { cout << "Second array: "; }
+			cout << arr2[i - 5] << " ";
+			if (i == 9) { cout << endl; }
 		}
-	}
-
-	for (size_t i = 0; i < SIZE; i++)
-	{
-		if (arr2[i] < 0)
-		{
-			globalArray[globalCurrentSize] = arr2[i];
-			globalCurrentSize++;
-		}
-	}
-
-	for (size_t i = 0; i < SIZE*2; i++)
-	{
-		cout << globalArray[i] << " ";
 	}
 	
 	return 0;
