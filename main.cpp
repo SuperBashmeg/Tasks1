@@ -6,7 +6,6 @@ int main() {
 	int currentSize = SIZE;
 	int arr[SIZE] = { 1, 0, 2, 3, 4 };
 
-	//delete the element by index
 	int index;
 	for (size_t i = 0; i < SIZE; i++)
 	{
