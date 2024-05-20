@@ -1,36 +1,52 @@
 #include <iostream>
 using namespace std;
+
+
+bool isExist(int arr[], int size, int number)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] == number)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
 int main()
 {
 	const int SIZE = 10;
-	double cars[SIZE];
+	int numbers[SIZE];
+	int displays[SIZE];
+	int displaysPosition = 0;
 
 	for (int i = 0; i < SIZE; i++)
 	{
-		cout << "Enter the price of car " << i + 1 << ": ";
-		cin >> cars[i];
+		cout << "Enter number " << i + 1 << ": ";
+		cin >> numbers[i];
 	}
 
-	double max = cars[0];
-	int maxIndex = 0;
-	int maxIndex2 = -1;
-	for (int i = 1; i < SIZE; i++)
+	cout << "Numbers that are exist in array more than once: ";
+	for (int i = 0; i < SIZE; i++)
 	{
-		if (cars[i] > max)
+		int count = 0;
+		for (int j = 0; j < SIZE; j++)
 		{
-			max = cars[i];
-			maxIndex = i;
+			if (numbers[i] == numbers[j] && !isExist(displays, SIZE, numbers[i]))
+			{
+				count++;
+			}
 		}
-		else if (cars[i] == max)
+		if (count > 1)
 		{
-			maxIndex2 = i;
+			cout << numbers[i] << " ";
+			displays[displaysPosition] = numbers[i];
+			displaysPosition++;
 		}
 	}
-	cout << "The most expensive car is car " << maxIndex + 1 << " with the price of " << max << endl;
-	if (maxIndex2 != -1)
-	{
-		cout << "The last most expensive car is car " << maxIndex2 + 1 << " with the price of " << max << endl;
-	}
+	cout << endl;
 
 
 	return 0;
