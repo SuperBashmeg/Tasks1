@@ -17,15 +17,13 @@ int main() {
 			globalArray[globalCurrentSize] = arr[i];
 			globalCurrentSize++;
 		}
-	}
-	for (size_t i = 0; i < SIZE; i++)
-	{
 		if (arr2[i] > 0)
 		{
 			globalArray[globalCurrentSize] = arr2[i];
 			globalCurrentSize++;
 		}
 	}
+	
 
 	for (size_t i = 0; i < SIZE; i++)
 	{
@@ -34,16 +32,14 @@ int main() {
 			globalArray[globalCurrentSize] = arr[i];
 			globalCurrentSize++;
 		}
-	}
-
-	for (size_t i = 0; i < SIZE; i++)
-	{
 		if (arr2[i] == 0)
 		{
 			globalArray[globalCurrentSize] = arr2[i];
 			globalCurrentSize++;
 		}
 	}
+
+	
 
 	for (size_t i = 0; i < SIZE; i++)
 	{
@@ -52,16 +48,14 @@ int main() {
 			globalArray[globalCurrentSize] = arr[i];
 			globalCurrentSize++;
 		}
-	}
-
-	for (size_t i = 0; i < SIZE; i++)
-	{
 		if (arr2[i] < 0)
 		{
 			globalArray[globalCurrentSize] = arr2[i];
 			globalCurrentSize++;
 		}
 	}
+
+	
 
 	for (size_t i = 0; i < SIZE*2; i++)
 	{
