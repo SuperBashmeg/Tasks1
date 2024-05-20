@@ -1,23 +1,32 @@
 #include <iostream>
 using namespace std;
+int main()
+{
+    const int size = 9;
+    double arr[size] = { -5.7, 6.0, 2, 0, -4.7, 6, 8.1, -4, 0 };
 
-int main() {
-	const int SIZE = 5;
-	int currentSize = SIZE;
-	int arr[SIZE] = { 1, 0, 2, 3, 4 };
-	int arr2[SIZE] = { -3, 8, -1, 2, 0 };
-	int globalArray[SIZE];
-	int globalCurrentSize = 0;
+    double positive = 0;
+    for (int i = size - 1; i >= 0; i--)
+    {
+        if (arr[i] > 0)
+        {
+            positive = arr[i];
+            break;
+        }
+    }
 
-	for (size_t i = 0; i < SIZE; i++)
-	{
-		globalArray[i] = arr[i] + arr2[i];
-	}
-	
-	for (size_t i = 0; i < SIZE; i++)
-	{
-		cout << globalArray[i] << " ";
-	}
-	
-	return 0;
+    double negative = 0;
+    for (int i = 0; i < size; i++)
+    {
+        if (arr[i] < 0)
+        {
+            negative = arr[i];
+            break;
+        }
+    }
+
+    cout << "Last positive number: " << positive << endl;
+    cout << "First negative number: " << negative << endl;
+
+    return 0;
 }
