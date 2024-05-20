@@ -2,41 +2,35 @@
 using namespace std;
 int main()
 {
-	const int SIZE = 40;
-	int arr[SIZE];
+	const int SIZE = 31;
+	double temp[SIZE];
 
-	for (int i = 0; i < SIZE; i++) {
-		cout << "Enter the population of the " << i + 1 << " flat: ";
-		cin >> arr[i];
-	}
-	int flat;
-	cout << "Enter the number of the flat: ";
-	cin >> flat;
-	int population = arr[flat - 1];
-	if (flat % 2 == 1) {
-		population += arr[flat];
-	}
-	else
+	for (int i = 0; i < SIZE; i++)
 	{
-		population += arr[flat - 2];
+		cout << "Enter the temperature for day " << i + 1 << ": ";
+		cin >> temp[i];
 	}
-	cout << "The population of the same floor is " << population << endl;
 
-	int enterence;
-	cout << "Enter the number of the enterence: ";
-	cin >> enterence;
-	int enterencePopulation = 0;
-	for (int i = (enterence - 1) * 10; i < (enterence - 1) * 10 + 10; i++) {
-		enterencePopulation += arr[i];
-	}
-	cout << "The population of the same enterence is " << enterencePopulation << endl;
-
-	for (size_t i = 0; i < SIZE; i++)
+	double sum = 0;
+	for (int i = 0; i < SIZE; i++)
 	{
-		if (arr[i] >= 5) {
-			cout << "The number of the flat with more than 5 people is " << i + 1 << endl;
+		sum += temp[i];
+	}
+	cout << "The avarage temperature for jenuary is: " << sum / SIZE << endl;
+
+	double mark;
+	cout << "Enter the temperature mark: ";
+	cin >> mark;
+
+	cout << "The days with temperature less than " << mark << " are: ";
+	for (int i = 0; i < SIZE; i++)
+	{
+		if (temp[i] < mark)
+		{
+			cout << i + 1 << " ";
 		}
 	}
+
 
 	return 0;
 }
