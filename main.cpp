@@ -1,46 +1,44 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 int main() {
-	const int SIZE = 10;
-	int currentSize = SIZE;
-	int arr[SIZE] = { 1, 0, 2, 3, 4, 12, 15, -20, 16, 199 };
-	int arr2[SIZE] = { -3, 8, -1, 2, 0, 2, 3, 4, 13, 11, };
-	int globalArray[SIZE * 2];
-	int globalCurrentSize = 0;
-	for (size_t i = 0; i < SIZE*2; i++)
-	{
-		if (i%2 == 0)
-		{
-			globalArray[i] = arr[i/2];
-		}
-		else{
-			globalArray[i] = arr2[i/2];
+	srand(time(0));
+	const int cols = 10;
+	const int rows = 10;
+	int matrix[cols][rows];
+	int sum = 0;
+	for (int i = 0; i < cols; i++) {
+		for (int j = 0; j < rows; j++) {
+			matrix[i][j] = rand() % 100;
 		}
 	}
-	cout << "Type 1: ";
-	for (size_t i = 0; i < SIZE*2; i++)
-	{
-		cout << globalArray[i] << " ";
-	}
-	cout << endl;
-	int globalArray2[SIZE * 2] = {};
-	for (size_t i = 0; i < SIZE * 2; i++)
-	{
-		if (i < SIZE)
-		{
-			globalArray2[i] = arr[i];
+
+	for (int i = 0; i < cols; i++) {
+		for (int j = 0; j < rows; j++) {
+			cout << matrix[i][j] << " ";
 		}
-		else {
-			globalArray2[i] = arr2[i - SIZE];
+		cout << endl;
+	}
+
+	int min = matrix[0][0];
+	int max = matrix[0][0];
+
+	for (int i = 0; i < cols; i++) {
+		for (int j = 0; j < rows; j++) {
+			if (matrix[i][j] < min) {
+				min = matrix[i][j];
+			}
+			if (matrix[i][j] > max) {
+				max = matrix[i][j];
+			}
+			sum += matrix[i][j];
 		}
 	}
-	cout << "Type 2: ";
-	for (size_t i = 0; i < SIZE * 2; i++)
-	{
-		cout << globalArray2[i] << " ";
-	}
-	cout << endl;
-	
+	int avg = sum / (cols * rows);
+	cout << "Min: " << min << endl;
+	cout << "Max: " << max << endl;
+	cout << "Sum: " << sum << endl;
+	cout << "Avg: " << avg << endl;
 	return 0;
 }
