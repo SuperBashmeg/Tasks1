@@ -33,11 +33,22 @@ int main() {
 		}
 		cout << endl;
 	}
-	for (int i = 0; i < cols+2; i++) {
-		cout << "----";
+	for (int i = 0; i < cols*4+9; i++) {
+		cout << "-";
 	}
-	cout << "-";
 	cout << endl;
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols / 2; j++) {
+			matrix2[i][j] = matrix[i][j * 2] + matrix[i][j * 2 + 1];
+		}
+	}
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols / 2; j++) {
+			Align(matrix2[i][j]);
+			cout << matrix2[i][j] << " ";
+		}
+		cout << endl;
+	}
 
 
 	return 0;
