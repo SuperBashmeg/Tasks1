@@ -16,13 +16,16 @@ void Align(int number) {
 
 int main() {
 	srand(time(0));
-	const int rows = 5;
-	const int cols = 10;
-	int matrix[rows][cols];
-	int matrix2[rows][cols/2];
+	const int rows = 3;
+	const int cols = 3;
+	long long matrix[rows][cols];
+	cout << "Enter a number: ";
+	int number;
+	cin >> number;
+
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
-			matrix[i][j] = rand() % 50;
+			matrix[i][j] = pow(number, i*cols+j);
 		}
 	}
 
@@ -37,18 +40,6 @@ int main() {
 		cout << "-";
 	}
 	cout << endl;
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols / 2; j++) {
-			matrix2[i][j] = matrix[i][j * 2] + matrix[i][j * 2 + 1];
-		}
-	}
-	for (int i = 0; i < rows; i++) {
-		for (int j = 0; j < cols / 2; j++) {
-			Align(matrix2[i][j]);
-			cout << matrix2[i][j] << " ";
-		}
-		cout << endl;
-	}
 
 
 	return 0;
