@@ -25,7 +25,7 @@ int main() {
 
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < cols; j++) {
-			matrix[i][j] = number * pow(2, i*cols+j);
+			matrix[i][j] = number+i*cols+j;
 		}
 	}
 
