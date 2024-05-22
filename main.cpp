@@ -2,43 +2,75 @@
 #include <ctime>
 using namespace std;
 
+void Align(int number) {
+	if (number / 10 < 1) {
+		cout << "   ";
+	}
+	else if (number / 100 < 1) {
+		cout << "  ";
+	}
+	else if (number / 1000 < 1) {
+		cout << " ";
+	}
+}
+
 int main() {
 	srand(time(0));
-	const int cols = 10;
-	const int rows = 10;
-	int matrix[cols][rows];
-	int sum = 0;
-	for (int i = 0; i < cols; i++) {
-		for (int j = 0; j < rows; j++) {
-			matrix[i][j] = rand() % 100;
+	const int rows = 5;
+	const int cols = 2;
+	int matrix[rows][cols];
+	int rowsSum[rows];
+	int colsSum[cols];
+	int globalSum = 0;
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			matrix[i][j] = rand() % 25;
 		}
 	}
 
-	for (int i = 0; i < cols; i++) {
-		for (int j = 0; j < rows; j++) {
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
 			cout << matrix[i][j] << " ";
 		}
 		cout << endl;
 	}
-
-	int min = matrix[0][0];
-	int max = matrix[0][0];
-
-	for (int i = 0; i < cols; i++) {
-		for (int j = 0; j < rows; j++) {
-			if (matrix[i][j] < min) {
-				min = matrix[i][j];
-			}
-			if (matrix[i][j] > max) {
-				max = matrix[i][j];
-			}
-			sum += matrix[i][j];
+	cout << endl;
+	for (int i = 0; i < rows; i++) {
+		rowsSum[i] = 0;
+		for (int j = 0; j < cols; j++) {
+			rowsSum[i] += matrix[i][j];
+			globalSum += matrix[i][j];
 		}
 	}
-	int avg = sum / (cols * rows);
-	cout << "Min: " << min << endl;
-	cout << "Max: " << max << endl;
-	cout << "Sum: " << sum << endl;
-	cout << "Avg: " << avg << endl;
+
+	for (int i = 0; i < cols; i++) {
+		colsSum[i] = 0;
+		for (int j = 0; j < rows; j++) {
+			colsSum[i] += matrix[j][i];
+			globalSum += matrix[j][i];
+		}
+	}
+
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			Align(matrix[i][j]);
+			cout << matrix[i][j];
+		}
+		cout << "   |";
+		Align(rowsSum[i]);
+		cout << rowsSum[i] << endl;
+	}
+	for (int i = 0; i < 2+cols; i++) {
+		cout << "----";
+	}
+	cout << endl;
+	for (int i = 0; i < cols; i++) {
+		Align(colsSum[i]);
+		cout << colsSum[i];
+	}
+	cout << "   |";
+	Align(globalSum);
+	cout << globalSum << endl;
+
 	return 0;
 }
