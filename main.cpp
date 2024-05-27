@@ -1,16 +1,24 @@
 #include <iostream>
 using namespace std;
 
-void printSqauare(int w, int h) {
-	for (int i = 0; i < h; i++) {
-		for (int j = 0; j < w; j++) {
-			cout << "* ";
+bool isNumberPrime(int num) {
+	for (int i = 2; i < num; i++) {
+		if (num % i == 0) {
+			return false;
 		}
-		cout << endl;
 	}
+	return true;
 }
 
 int main() {
-	printSqauare(5, 9);
+	int num;
+	cout << "Enter a number: ";
+	cin >> num;
+	if (isNumberPrime(num)) {
+		cout << num << " is a prime number." << endl;
+	}
+	else {
+		cout << num << " is not a prime number." << endl;
+	}
 	return 0;
 }
