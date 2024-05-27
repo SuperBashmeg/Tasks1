@@ -1,16 +1,20 @@
 #include <iostream>
 using namespace std;
 
-int GetNumber(int base, int power) {
-	return pow(base, power);
+int GetSumOfNumbersBetween(int start, int end) {
+	int sum = 0;
+	for (int i = start+1; i < end; i++) {
+		sum += i;
+	}
+	return sum;
 }
 
 int main() {
-	int base, power;
-	cout << "Enter the base: ";
-	cin >> base;
-	cout << "Enter the power: ";
-	cin >> power;
-	cout << "The result is: " << GetNumber(base, power) << endl;
+	int start, end;
+	cout << "Enter start: ";
+	cin >> start;
+	cout << "Enter end: ";
+	cin >> end;
+	cout << "Sum of numbers between " << start << " and " << end << " is " << GetSumOfNumbersBetween(start, end) << endl;
 	return 0;
 }
