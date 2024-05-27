@@ -1,14 +1,16 @@
 #include <iostream>
 using namespace std;
 
-int GetNumberCube(int num) {
-	return num * num * num;
+int GetNumber(int base, int power) {
+	return pow(base, power);
 }
 
 int main() {
-	int num;
-	cout << "Enter a number: ";
-	cin >> num;
-	cout << "The cube of " << num << " is " << GetNumberCube(num) << endl;
+	int base, power;
+	cout << "Enter the base: ";
+	cin >> base;
+	cout << "Enter the power: ";
+	cin >> power;
+	cout << "The result is: " << GetNumber(base, power) << endl;
 	return 0;
 }
