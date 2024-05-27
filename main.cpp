@@ -1,14 +1,20 @@
 #include <iostream>
 using namespace std;
 
-int GetNumberCube(int num) {
-	return num * num * num;
+int GetBiggetNumber(int num1, int num2) {
+	if (num1 > num2) {
+		return num1;
+	}
+	else {
+		return num2;
+	}
 }
 
 int main() {
-	int num;
-	cout << "Enter a number: ";
-	cin >> num;
-	cout << "The cube of " << num << " is " << GetNumberCube(num) << endl;
+	int num1, num2;
+	cout << "Enter two numbers: ";
+	cin >> num1 >> num2;
+	cout << "The bigger number is: " << GetBiggetNumber(num1, num2) << endl;
+
 	return 0;
 }
