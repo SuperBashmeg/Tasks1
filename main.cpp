@@ -5,9 +5,11 @@ int main() {
 	int arr[size];
 	int key;
 	array_init(arr, size);
+	array_sort(arr, size);
+	display_array(arr, size);
 	cout << "Enter key: ";
 	cin >> key;
-	int index = linear_search(arr, size, key);
+	int index = binary_search(arr, size, key);
 	if (index != -1)
 		cout << "Element found at index " << index << endl;
 	else
