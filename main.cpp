@@ -1,11 +1,12 @@
 #include "lib.h"
 
-int sonbanb(int a, int b) { //Sum of numbers between a and b
+int sonbanb(int a, int b, int currentsum) { //Sum of numbers between a and b
 	if (a == b) {
-		return a;
+		return currentsum+a;
 	}
 	else {
-		return a + sonbanb(a + 1, b);
+		currentsum += a;
+		sonbanb(a + 1, b, currentsum);
 	}
 }
 
@@ -16,6 +17,6 @@ int main() {
 	cin >> a;
 	cout << "Enter b: ";
 	cin >> b;
-	cout << "Sum of numbers between a and b: " << sonbanb(a, b) << endl;
+	cout << "Sum of numbers between a and b: " << sonbanb(a, b, 0) << endl;
 	return 0;
 }
