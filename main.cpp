@@ -1,23 +1,19 @@
 #include "lib.h"
 
-int pon(int number, int power, int result) { // Power of number
-	if (power == 0) {
-		return result;
+void aos(int n) { //amount of stars
+	if (n == 0) {
+		return;
 	}
 	else {
-		result = result * number;
-		return pon(number, power - 1, result);
+		cout << "*";
+		aos(n - 1);
 	}
 }
 
 int main() {
-	int number;
-	cout << "Enter number: ";
-	cin >> number;
-	int power;
-	cout << "Enter power: ";
-	cin >> power;
-	int answer = pon(number, power, 1);
-	cout << "Answer: " << answer << endl;
+	int n;
+	cout << "Enter amount of stars: ";
+	cin >> n;
+	aos(n);
 	return 0;
 }
