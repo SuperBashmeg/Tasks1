@@ -1,14 +1,19 @@
 #include "lib.h"
 
-int gcd(int a, int b) { //recursive greatest common divisor
-	if (b == 0) return a;
-	return gcd(b, a % b);
+//get max number using pointers
+int maxnum(int* a, int* b) {
+	if (*a > *b) {
+		return *a;
+	}
+	else {
+		return *b;
+	}
 }
 
+
 int main() {
-	int a, b;
-	cout << "Enter two numbers: ";
-	cin >> a >> b;
-	cout << "Greates Common Divisor of " << a << " and " << b << " is " << gcd(a, b) << endl;
+	int* a = new int{ 10 };
+	int * b = new int{ 20 };
+	cout << "Max number is: " << maxnum(a, b) << endl;
 	return 0;
 }
