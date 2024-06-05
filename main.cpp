@@ -1,19 +1,24 @@
 #include "lib.h"
 
-//get max number using pointers
-int maxnum(int* a, int* b) {
-	if (*a > *b) {
-		return *a;
+//get if number is positive or negative
+void positiveOrNegative(int* num) {
+	if (*num > 0) {
+		cout << "Positive" << endl;
+	}
+	else if (*num < 0) {
+		cout << "Negative" << endl;
 	}
 	else {
-		return *b;
+		cout << "Zero" << endl;
 	}
 }
 
 
 int main() {
-	int* a = new int{ 10 };
-	int * b = new int{ 20 };
-	cout << "Max number is: " << maxnum(a, b) << endl;
+	int num;
+	cout << "Enter a number: ";
+	cin >> num;
+	int* n_p = &num;
+	positiveOrNegative(n_p);
 	return 0;
 }
