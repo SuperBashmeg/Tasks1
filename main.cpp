@@ -6,7 +6,7 @@ T* init_arr(int size)
 	T* arr = new T[size];
 	for (int i = 0; i < size; i++)
 	{
-		arr[i] = rand() % 10;
+		arr[i] = rand() % 100;
 	}   
 	return arr;
 }
@@ -48,19 +48,22 @@ int find_elem_in_arr(int* arr, int size, int elem) {
 }
 
 template<typename T>
-void create_array_from_2_arrays(T* arr1, T*arr2, int size1, int size2) {
+void create_array_from_2_arrays(T* arr1, T* arr2, int size1, int size2) {
 	int new_array_size = 0;
+	bool is_number_found = false;
 	T* new_arr = new T[0];
 	for (int i = 0; i < size1; i++) {
 		for (int j = 0; j < size2; j++) {
 			if (arr1[i] == arr2[j]) {
-				if (find_elem_in_arr(new_arr, new_array_size, arr1[i]) == -1) {
-					add_elem_to_arr<int>(new_arr, new_array_size, arr1[i], new_array_size);
-				}
+				is_number_found = true;
 			}
 		}
+		if (!is_number_found && find_elem_in_arr(new_arr, new_array_size, arr1[i]) == -1) {
+			add_elem_to_arr<int>(new_arr, new_array_size, arr1[i], new_array_size);
+		}
+		is_number_found = false;
 	}
-	
+
 	print_arr<int>(new_arr, new_array_size);
 }
 
