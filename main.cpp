@@ -6,7 +6,8 @@ T* init_arr(int size)
 	T* arr = new T[size];
 	for (int i = 0; i < size; i++)
 	{
-		arr[i] = rand() % 10;
+		cout << "Enter element " << i << ": ";
+		cin >> arr[i];
 	}   
 	return arr;
 }
@@ -19,70 +20,72 @@ void print_arr(T* arr, int size)
 	}
 	cout << endl;
 }
+
 template<typename T>
-void add_elem_to_arr(T*& arr, int& size, T elem, int index) {
-	size++;
+void remove_element_from_array(T*& arr, int& size, int index) {
+	size--;
 	T* new_arr = new T[size];
 	for (int i = 0; i < size; i++) {
 		if (i < index) {
 			new_arr[i] = arr[i];
 		}
-		else if (i == index) {
-			new_arr[i] = elem;
-		}
 		else {
-			new_arr[i] = arr[i - 1];
+			new_arr[i] = arr[i + 1];
 		}
 	}
 	delete[] arr;
 	arr = new_arr; 
 }
 
-int find_elem_in_arr(int* arr, int size, int elem) {
+void remove_all_even_numbers_from_array(int*& arr, int& size) {
 	for (int i = 0; i < size; i++) {
-		if (arr[i] == elem) {
-			return i;
+		if (arr[i] % 2 == 0) {
+			remove_element_from_array(arr, size, i);
+			i--;
 		}
 	}
-	return -1;
 }
 
-template<typename T>
-void create_array_from_2_arrays(T* arr1, T*arr2, int size1, int size2) {
-	int new_array_size = 0;
-	T* new_arr = new T[0];
-	for (int i = 0; i < size1; i++) {
-		for (int j = 0; j < size2; j++) {
-			if (arr1[i] == arr2[j]) {
-				if (find_elem_in_arr(new_arr, new_array_size, arr1[i]) == -1) {
-					add_elem_to_arr<int>(new_arr, new_array_size, arr1[i], new_array_size);
-				}
-			}
+void remove_all_odd_numbers_from_array(int*& arr, int& size) {
+	for (int i = 0; i < size; i++) {
+		if (arr[i] % 2 != 0) {
+			remove_element_from_array(arr, size, i);
+			i--;
 		}
 	}
-	
-	print_arr<int>(new_arr, new_array_size);
 }
-
-
-
-
 
 int main() {
 	srand(time(0));
 	int arr_size_1;
-	int arr_size_2;
-	cout << "Enter the size of the first array: ";
+	cout << "Enter size of array: ";
 	cin >> arr_size_1;
-	cout << "Enter the size of the second array: ";
-	cin >> arr_size_2;
 	int* arr1 = init_arr<int>(arr_size_1);
-	int* arr2 = init_arr<int>(arr_size_2);
-	int newsize = 0;
 	print_arr<int>(arr1, arr_size_1);
-	print_arr<int>(arr2, arr_size_2);
-	create_array_from_2_arrays<int>(arr1, arr2, arr_size_1, arr_size_2);
-
+	//Make menu for user to choose what to do with array
+	int choice;
+	cout << "1. Remove all even numbers from array" << endl;
+	cout << "2. Remove all odd numbers from array" << endl;
+	cout << "Enter your choice: ";
+	cin >> choice;
+	switch (choice) {
+	case 1:
+		remove_all_even_numbers_from_array(arr1, arr_size_1);
+		break;
+	case 2:
+		remove_all_odd_numbers_from_array(arr1, arr_size_1);
+		break;
+	default:
+		cout << "Invalid choice" << endl;
+		break;
+	}
+	if (arr_size_1 > 0) {
+		print_arr<int>(arr1, arr_size_1);
+		delete[] arr1;
+	}
+	else {
+		cout << "Array is empty" << endl;
+	}
 
 	return 0;
 }
