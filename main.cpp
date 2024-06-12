@@ -6,7 +6,7 @@ T* init_arr(int size)
 	T* arr = new T[size];
 	for (int i = 0; i < size; i++)
 	{
-		arr[i] = rand() % 100;
+		arr[i] = rand() % 20-10;
 	}   
 	return arr;
 }
@@ -21,18 +21,26 @@ void print_arr(T* arr, int size)
 }
 
 template<typename T>
-void func(T* arr, int size, T*& sum, T*& mul) {
-	if (sum == nullptr) {
-		sum = new T(0);
+void func(T* arr, int size, T*& negative, T*& positive, T*& zero) {
+	if (negative == nullptr) {
+		negative = new T(0);
 	}
-	if (mul == nullptr) {
-		mul = new T(1);
+	if (positive == nullptr) {
+		positive = new T(0);
 	}
-	*sum = 0;
-	*mul = 1;
+	if (zero == nullptr) {
+		zero = new T(0);
+	}
 	for (int i = 0; i < size; i++) {
-		*sum += *(arr + i);
-		*mul *= *(arr + i);
+		if (arr[i] < 0) {
+			*negative += 1;
+		}
+		else if (arr[i] > 0) {
+			*positive += 1;
+		}
+		else {
+			*zero += 1;
+		}
 	}
 }
 
@@ -44,13 +52,12 @@ int main() {
 	cin >> arr_size;
 	int* arr = init_arr<int>(arr_size);
 	print_arr<int>(arr, arr_size);
-	int* sum = nullptr;
-	int* mul = nullptr;
-	func<int>(arr, arr_size, sum, mul);
-	cout << "Sum: " << *sum << endl;
-	cout << "Mul: " << *mul << endl;
-
-
-
+	int* positive = nullptr;
+	int* negative = nullptr;
+	int* zero = nullptr;
+	func<int>(arr, arr_size, negative, positive, zero);
+	cout << "Negative: " << *negative << endl;
+	cout << "Positive: " << *positive << endl;
+	cout << "Zero: " << *zero << endl;
 	return 0;
 }
