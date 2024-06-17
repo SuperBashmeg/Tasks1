@@ -44,35 +44,32 @@ void printMatrix(T** arr, int row, int col)
     }
 }
 
-//add row to selecter position in matrix with randomization of new row
+//add column by index to matrix
 template <typename T>
-void addRow(T**& arr, int& row, int col, int selecter)
+void addColumn(T**& arr, int& row, int& col, int index)
 {
-	T** newArr = createMatrix<T>(row + 1, col);
-	for (int i = 0; i < row + 1; i++)
+	T** temp = createMatrix<T>(row, col + 1);
+	for (int i = 0; i < row; i++)
 	{
-		for (size_t j = 0; j < col; j++)
+		for (int j = 0; j < col + 1; j++)
 		{
-			if (i < selecter)
+			if (j < index)
 			{
-				newArr[i][j] = arr[i][j];
+				temp[i][j] = arr[i][j];
 			}
-			else if (i == selecter)
+			else if (j == index)
 			{
-				for (size_t k = 0; k < col; k++)
-				{
-					newArr[i][k] = rand() % 10;
-				}
+				temp[i][j] = 0;
 			}
 			else
 			{
-				newArr[i][j] = arr[i - 1][j];
+				temp[i][j] = arr[i][j - 1];
 			}
 		}
 	}
 	deleteMatrix(arr, row);
-	arr = newArr;
-	row++;
+	arr = temp;
+	col++;
 }
 
 int main()
@@ -84,7 +81,7 @@ int main()
     randMatrix(arr, row, col);
     printMatrix(arr, row, col);
 	cout << endl;
-	addRow(arr, row, col, 2);
+	addColumn(arr, row, col, 2);
 	printMatrix(arr, row, col);
     deleteMatrix(arr, row);
 }
