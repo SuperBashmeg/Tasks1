@@ -44,33 +44,19 @@ void printMatrix(T** arr, int row, int col)
     }
 }
 
-
 template <typename T>
-void addColumn(T**& arr, int& row, int& col, int index)
+void removeColumn(T** arr, int row, int& col, int index)
 {
-	T** temp = createMatrix<T>(row, col + 1);
 	for (int i = 0; i < row; i++)
 	{
-		for (int j = 0; j < col + 1; j++)
+		for (int j = index; j < col - 1; j++)
 		{
-			if (j < index)
-			{
-				temp[i][j] = arr[i][j];
-			}
-			else if (j == index)
-			{
-				temp[i][j] = 0;
-			}
-			else
-			{
-				temp[i][j] = arr[i][j - 1];
-			}
+			arr[i][j] = arr[i][j + 1];
 		}
 	}
-	deleteMatrix(arr, row);
-	arr = temp;
-	col++;
+	col--;
 }
+
 
 int main()
 {
@@ -81,7 +67,7 @@ int main()
     randMatrix(arr, row, col);
     printMatrix(arr, row, col);
 	cout << endl;
-	addColumn(arr, row, col, 2);
+	removeColumn(arr, row, col, 2);
 	printMatrix(arr, row, col);
     deleteMatrix(arr, row);
 }
