@@ -44,26 +44,26 @@ void printMatrix(T** arr, int row, int col)
     }
 }
 
-//add row to end in matrix with randomization of new row
+//add row to start in matrix with randomization of new row
 template <typename T>
-void addRow(T**& arr, int& row, int col)
+void addRowStart(T**& arr, int& row, int col)
 {
 	T** temp = createMatrix<T>(row + 1, col);
-	for (int i = 0; i < row; i++)
+	for (int i = 1; i < row + 1; i++)
 	{
 		for (size_t j = 0; j < col; j++)
 		{
-			temp[i][j] = arr[i][j];
+			temp[i][j] = arr[i - 1][j];
 		}
 	}
 	for (size_t j = 0; j < col; j++)
 	{
-		temp[row][j] = rand() % 10;
+		temp[0][j] = rand() % 10;
 	}
 	deleteMatrix(arr, row);
 	arr = temp;
 	row++;
-}   
+}	
 
 int main()
 {
@@ -74,7 +74,7 @@ int main()
     randMatrix(arr, row, col);
     printMatrix(arr, row, col);
 	cout << endl;
-	addRow(arr, row, col);
+	addRowStart(arr, row, col);
 	printMatrix(arr, row, col);
     deleteMatrix(arr, row);
 }
