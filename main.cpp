@@ -44,7 +44,7 @@ void printMatrix(T** arr, int row, int col)
     }
 }
 
-//add column by index to matrix
+
 template <typename T>
 void addColumn(T**& arr, int& row, int& col, int index)
 {
