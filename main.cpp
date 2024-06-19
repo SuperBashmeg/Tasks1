@@ -1,20 +1,28 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "lib.h"
 
-int main() {
-	const int SIZE = 100;
-	char str[SIZE] = "Alala";
-	_strlwr(str);
-	int realsize = strlen(str);
+void deleteChar(char* str, int index) {
 	int i = 0;
-	for (i = 0; i < realsize; i++) {
-		if (str[i] != str[realsize - i - 1]) {
-			cout << "The word is not Palindrome" << endl;
+	while (str[i] != '\0') {
+		if (i == index) {
+			while (str[i] != '\0') {
+				str[i] = str[i + 1];
+				i++;
+			}
 			break;
 		}
+		i++;
 	}
-	if (i == realsize) {
-		cout << "The word is Palindrome" << endl;
-	}
+	cout << "String after deletion: " << str << endl;
+}
+
+int main() {
+	const int SIZE = 100;
+	char str[SIZE] = "Just some random string";
+	int indexToDelete;
+	cout << "Original string: " << str << endl;
+	cout << "Enter index to delete: ";
+	cin >> indexToDelete;
+	deleteChar(str, indexToDelete);
 	return 0;
 }
