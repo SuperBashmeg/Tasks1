@@ -3,19 +3,18 @@
 
 int main() {
 	const int SIZE = 100;
-	char str[SIZE] = "Hello, World! 123OMG idk If    Its \t working";
+	char str[SIZE] = "Alala";
+	_strlwr(str);
+	int realsize = strlen(str);
 	int i = 0;
-	int words = 0;
-
-	while (str[i] != '\0') {
-		if (isalpha(str[i]) && i == 0) {
-			words++;
+	for (i = 0; i < realsize; i++) {
+		if (str[i] != str[realsize - i - 1]) {
+			cout << "The word is not Palindrome" << endl;
+			break;
 		}
-		else if (isalpha(str[i]) && !isalpha(str[i - 1])) {
-			words++;
-		}
-		i++;
 	}
-	cout << str << "\t\t" << "Number of words: " << words << endl;
+	if (i == realsize) {
+		cout << "The word is Palindrome" << endl;
+	}
 	return 0;
 }
