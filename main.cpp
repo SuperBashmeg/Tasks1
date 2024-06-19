@@ -3,7 +3,9 @@
 
 int main() {
 	const int SIZE = 100;
-	char str[SIZE] = "Hello, World!123";
+	char str[SIZE];
+	cout << "Enter a string: ";
+	cin.getline(str, SIZE);
 	int i = 0;
 	int digits = 0;
 	int letters = 0;
