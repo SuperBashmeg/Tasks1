@@ -3,26 +3,19 @@
 
 int main() {
 	const int SIZE = 100;
-	char str[SIZE] = "Hello, World!123";
+	char str[SIZE] = "Hello, World! 123OMG idk If    Its \t working";
 	int i = 0;
-	int digits = 0;
-	int letters = 0;
-	int other = 0;
+	int words = 0;
 
 	while (str[i] != '\0') {
-		if (isdigit(str[i])) {
-			digits++;
+		if (isalpha(str[i]) && i == 0) {
+			words++;
 		}
-		else if (isalpha(str[i])) {
-			letters++;
-		}
-		else {
-			other++;
+		else if (isalpha(str[i]) && !isalpha(str[i - 1])) {
+			words++;
 		}
 		i++;
 	}
-	cout << "Digits: " << digits << endl;
-	cout << "Letters: " << letters << endl;
-	cout << "Other: " << other << endl;
+	cout << str << "\t\t" << "Number of words: " << words << endl;
 	return 0;
 }
