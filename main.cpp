@@ -1,28 +1,26 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "lib.h"
 
-void deleteChar(char* str, int index) {
-	int i = 0;
-	while (str[i] != '\0') {
-		if (i == index) {
-			while (str[i] != '\0') {
-				str[i] = str[i + 1];
-				i++;
-			}
-			break;
+void deleteChar(char* str, char charToDelete) {
+	int i = 0, j = 0;
+	while (str[i]) {
+		if (str[i] != charToDelete) {
+			str[j] = str[i];
+			j++;
 		}
 		i++;
 	}
-	cout << "String after deletion: " << str << endl;
+	str[j] = '\0';
 }
 
 int main() {
 	const int SIZE = 100;
 	char str[SIZE] = "Just some random string";
-	int indexToDelete;
+	char charToDelete;
 	cout << "Original string: " << str << endl;
-	cout << "Enter index to delete: ";
-	cin >> indexToDelete;
-	deleteChar(str, indexToDelete);
+	cout << "Enter the character you want to delete: ";
+	cin >> charToDelete;
+	deleteChar(str, charToDelete);
+	cout << "String after deleting the character: " << str << endl;
 	return 0;
 }
