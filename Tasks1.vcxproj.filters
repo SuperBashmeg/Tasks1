@@ -4,10 +4,18 @@
     <Filter Include="main">
       <UniqueIdentifier>{52962651-f027-480c-bd2c-d1e5f005bf00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{67a664eb-250a-4c1b-a814-947cbd18bcca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>main</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib.h">
+      <Filter>lib</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

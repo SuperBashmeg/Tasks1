@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -5,5 +6,6 @@
 #include <windows.h>
 #include <ctime>
 #include <cmath>
+
 
 using namespace std;

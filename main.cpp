@@ -1,7 +1,5 @@
 #include "lib.h"
 
-using namespace std;
-
 void myStrLower(char* str) {
 	for (int i = 0; i < strlen(str); i++) {
 		if (str[i] >= 'A' && str[i] <= 'Z') {
@@ -18,7 +16,7 @@ bool isCharacterAnEndOfWord(char c) {
 		return false;
 	}
 }
-//comment
+
 void reverseText(char* text) {
 	int length = strlen(text);
 	for (int i = 0; i < length / 2; i++) {
@@ -57,7 +55,6 @@ int getNumberOfWordInText(char* word, char* text) {
 			}
 			if (isWord) {
 				count++;
-				cout << "Count Added" << endl;
 			}
 		}
 	}
@@ -89,7 +86,7 @@ void reverseSentances(char* text) {
 	int start = length - 1;
 	for (int i = 0; i < amountOfSentences; i++) {
 		int end = findSentanceEndFromEnd(text, start);
-		for (int j = end + 1; j <= start; j++) {
+		for (int j = end; j <= start; j++) {
 			cout << text[j];
 		}
 		cout << " ";
@@ -107,11 +104,12 @@ int getAmountOfCommasAndDots(char* text) {
 	return count;
 }
 
+
 int main() {
-	char text[1000];
+	char text[250];
 	char word[100];
-	char lowerText[1000];
-	char copyText[1000];
+	char lowerText[250];
+	char copyText[250];
 	char lowerWord[100];
 	cout << "Enter text: ";
 	cin.getline(text, 100);
