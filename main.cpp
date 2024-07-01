@@ -9,6 +9,11 @@ int main() {
 	cin >> start;
 	cout << "Enter the end of range: ";
 	cin >> end;
+	if (start > end) {
+		int temp = start;
+		start = end;
+		end = temp;
+	}
 	for (int i = start + 1; i < end; i++) {
 		sum += i;
 	}
