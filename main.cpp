@@ -2,13 +2,10 @@
 using namespace std;
 
 int main() {
-	int a;
+	int k;
 	cout << "Enter a number: ";
-	cin >> a;
-	int mult = 1;
-	for (size_t i = a; i < 20; i++)
-	{
-		mult *= i;
+	cin >> k;
+	for (int i = 1; i <= 10; i++) {
+		cout << k << " * " << i << " = " << k * i << endl;
 	}
-	cout << "The multiplication of the numbers from " << a << " to 20 is: " << mult << endl;
 }
