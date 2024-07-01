@@ -15,7 +15,7 @@ private:
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, 10);
-        cout << "Call Constructor Rectangle()" << endl;
+        cout << "Call Constructor point()" << endl;
         SetConsoleTextAttribute(hConsole, 7);
     }
 
@@ -23,7 +23,7 @@ private:
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, 12);
-        cout << "Call Destructor ~Rectangle()" << endl;
+        cout << "Call Destructor ~point()" << endl;
         SetConsoleTextAttribute(hConsole, 7);
     }
 public:
