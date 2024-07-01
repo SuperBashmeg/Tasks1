@@ -2,16 +2,25 @@
 
 
 int main() {
-	int A;
-	cout << "Enter A: ";
-	cin >> A;
-	cout << "Result: ";
-	for (int B = 1; B < A; B++) {
-		if (A % (B * B) == 0 && A % (B * B * B) != 0) {
-			cout << B << " ";
+	int a;
+	cout << "Enter a number: ";
+	cin >> a;
+	if (a == 0) {
+		cout << "The cube of the sum of the digits of this number is equal to " << a * a << endl;
+	}
+	else {
+		int sum = 0;
+		int temp = a;
+		while (temp != 0) {
+			sum += temp % 10;
+			temp /= 10;
+		}
+		if (sum * sum * sum == a * a) {
+			cout << "The cube of the sum of the digits of this number is equal to " << a * a << endl;
+		}
+		else {
+			cout << "The cube of the sum of the digits of this number is not equal to " << a * a << endl;
 		}
 	}
-	cout << endl;
-
 	return 0;
 }
