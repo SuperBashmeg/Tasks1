@@ -5,10 +5,10 @@ int main() {
 	int a;
 	cout << "Enter a number: ";
 	cin >> a;
-	int sum = 0;
-	for (size_t i = a; i < 500; i++)
+	int mult = 1;
+	for (size_t i = a; i < 20; i++)
 	{
-		sum += i;
+		mult *= i;
 	}
-	cout << "Sum of numbers from " << a << " to 500 is: " << sum << endl;
+	cout << "The multiplication of the numbers from " << a << " to 20 is: " << mult << endl;
 }
