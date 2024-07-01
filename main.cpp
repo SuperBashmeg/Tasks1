@@ -2,7 +2,6 @@
 
 fraction Addition(fraction fr1, fraction fr2)
 {
-	//with preserving original fractions
 	int numerator = *fr1.get_numerator() * *fr2.get_denominator() + *fr2.get_numerator() * *fr1.get_denominator();
 	int denominator = *fr1.get_denominator() * *fr2.get_denominator();
 	return fraction(numerator, denominator);
