@@ -13,10 +13,11 @@ int main() {
 		start = end;
 		end = temp;
 	}
+	int sum = 0;
 	for (size_t i = start+1; i < end; i++)
 	{
-		cout << i << " ";
+		sum += i;
 	}
-	cout << endl;
+	cout << "Sum of numbers between " << start << " and " << end << " is " << sum << endl;
 	return 0;
 }
