@@ -1,69 +1,79 @@
 #include "struct.h"
 
-void display_points(point* pt1, point* pt2)
+fraction Addition(fraction fr1, fraction fr2)
 {
-	char ul = 187, lr = 188, h = 205, v = 186;
-	int pt1_x = *pt1->get_pos_x();
-	int pt1_y = *pt1->get_pos_y();
-	int pt2_x = *pt2->get_pos_x();
-	int pt2_y = *pt2->get_pos_y();
-	int max_x = max(pt1_x, pt2_x);
-	int max_y = max(pt1_y, pt2_y);
-	cout << pt1_x << " " << pt1_y << endl;
-	cout << pt2_x << " " << pt2_y << endl;
-	cout << max_x << " " << max_y << endl;
-	for (size_t i = 0; i < max_x+1; i++)
-	{
-		if (i == 0)
-			cout << h;
-		else if (i == max_x)
-			cout << ul;
-		else
-			cout << h;
-	}
-	cout << endl;
-	for (size_t i = 0; i < max_y; i++)
-	{
-		for (size_t j = 0; j < max_x; j++)
-		{
-			if (j == pt1_x-1 && i == pt1_y-1)
-				cout << "1";
-			else if (j == pt2_x-1 && i == pt2_y-1)
-				cout << "2";
-			else
-				cout << " ";
-		}
-		cout << v;
-		cout << endl;
-	}
-	for (size_t i = 0; i < max_x+1; i++)
-	{
-		if (i == 0)
-			cout << h;
-		else if (i == max_x)
-			cout << lr;
-		else
-			cout << h;
-	}
+	//with preserving original fractions
+	int numerator = *fr1.get_numerator() * *fr2.get_denominator() + *fr2.get_numerator() * *fr1.get_denominator();
+	int denominator = *fr1.get_denominator() * *fr2.get_denominator();
+	return fraction(numerator, denominator);
 }
 
-double get_distance(point* pt1, point* pt2)
+fraction Subtraction(fraction fr1, fraction fr2)
 {
-	int x = *pt1->get_pos_x() - *pt2->get_pos_x();
-	int y = *pt1->get_pos_y() - *pt2->get_pos_y();
-	return sqrt(x * x + y * y);
+	int numerator = *fr1.get_numerator() * *fr2.get_denominator() - *fr2.get_numerator() * *fr1.get_denominator();
+	int denominator = *fr1.get_denominator() * *fr2.get_denominator();
+	return fraction(numerator, denominator);
+}
+
+fraction Multiplication(fraction fr1, fraction fr2)
+{
+	int numerator = *fr1.get_numerator() * *fr2.get_numerator();
+	int denominator = *fr1.get_denominator() * *fr2.get_denominator();
+	return fraction(numerator, denominator);
+}
+
+fraction Division(fraction fr1, fraction fr2)
+{
+	int numerator = *fr1.get_numerator() * *fr2.get_denominator();
+	int denominator = *fr1.get_denominator() * *fr2.get_numerator();
+	return fraction(numerator, denominator);
 }
 
 int main()
 {
-	point* pt1 = new point;
-	pt1->move(3, 3);
-	point* pt2 = new point;
-	pt2->move(15, 2);
-	display_points(pt1, pt2);
-	cout << endl;
-	cout << "Distance between points: " << get_distance(pt1, pt2) << endl;
+	fraction* fr1 = new fraction(1.5);
+	fraction* fr2 = new fraction(2, 3);
+	fr1->show();
+	fr2->show();
+	//Select what you want to do with fractions
+	fraction* add = nullptr;
+	fraction* sub = nullptr;
+	fraction* mul = nullptr;
+	fraction* div = nullptr;
+	int choice;
+	cout << "Select what you want to do with fractions: 1 - Addition, 2 - Subtraction, 3 - Multiplication, 4 - Division" << endl;
+	cin >> choice;
+	switch (choice)
+	{
+	case 1:
+	{
+		add = new fraction(Addition(*fr1, *fr2));
+		add->show();
+		break;
+	}
+	case 2:
+	{
+		sub = new fraction(Subtraction(*fr1, *fr2));
+		sub->show();
+		break;
+	}
+	case 3:
+	{
+		mul = new fraction(Multiplication(*fr1, *fr2));
+		mul->show();
+		break;
+	}
+	case 4:
+	{
+		div = new fraction(Division(*fr1, *fr2));
+		div->show();
+		break;
+	}
+	}
 	
-    delete pt1;
-	delete pt2;
+	if (add != nullptr) delete add;
+	if (sub != nullptr) delete sub;
+	if (mul != nullptr) delete mul;
+	if (div != nullptr) delete div;
+	return 0;
 }

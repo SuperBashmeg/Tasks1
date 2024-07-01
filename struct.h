@@ -5,17 +5,17 @@
 using namespace std;
 
 
-struct point
+struct fraction
 {
 private:
-	int* pos_x = nullptr;
-	int* pos_y = nullptr;
+	int* numerator = nullptr;
+	int* denominator = nullptr;
 
     void show_create_log()
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, 10);
-        cout << "Call Constructor point()" << endl;
+        cout << "Call Constructor fraction()" << endl;
         SetConsoleTextAttribute(hConsole, 7);
     }
 
@@ -23,57 +23,115 @@ private:
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         SetConsoleTextAttribute(hConsole, 12);
-        cout << "Call Destructor ~point()" << endl;
+        cout << "Call Destructor ~fraction()" << endl;
         SetConsoleTextAttribute(hConsole, 7);
     }
 public:
-	point() //default 
+	fraction(double number) //default
+	{
+		int count = 0;
+		int temp = number;
+		while (temp != 0) {
+			temp = temp / 10;
+			count++;
+		}
+		int temp2 = number * pow(10, count);
+		this->numerator = new int(temp2);
+		this->denominator = new int(pow(10, count));
+		reduction_of_fraction();
+		show_create_log();
+	}
+
+    fraction(int numerator, int denominator) //default 
     {
+		if (denominator == 0)
+		{
+			cout << "Error! Denominator can't be 0" << endl;
+			return;
+		}
+		this->numerator = new int(numerator);
+		this->denominator = new int(denominator);
+		reduction_of_fraction();
         show_create_log();
     }
 
     //getters
-    int* get_pos_x() {
-		if (this->pos_x != nullptr)
-			return this->pos_x;
+    int* get_numerator() {
+		if (this->numerator != nullptr)
+			return this->numerator;
 		else
 			return new int{ 0 };
     }
-    int* get_pos_y() {
-		if (this->pos_y != nullptr)
-			return this->pos_y;
+    int* get_denominator() {
+		if (this->denominator != nullptr)
+			return this->denominator;
 		else
-			return new int{ 0 };
+			return new int{ 1 };
     }
 
 
     //setters
-	void set_pos_x(int* pos_x) {
-		if (pos_x != nullptr)
-		    this->pos_x = pos_x;
+	void set_nomenator(int* numerator) {
+		if (numerator != nullptr)
+		    this->numerator = numerator;
 	}
-    void set_pos_y(int* pos_y) {
-		if (pos_y != nullptr)
-			this->pos_y = pos_y;
+    void set_denominator(int* denominator) {
+		if (denominator != nullptr)
+			this->denominator = denominator;
     }
 
-	void move(int x, int y) {
-		if (pos_x == nullptr) pos_x = new int{ 0 };
-		if (pos_y == nullptr) pos_y = new int{ 0 };
-		*pos_x += x;
-		*pos_y += y;
-	}
 
-    void about()
+    void reduction_of_fraction()
     {
-		cout << "Position X: " << *this->get_pos_x() << " inches" << endl;
-		cout << "Position Y: " << *this->get_pos_y() << " inches" << endl;
+		int a = *numerator;
+		int b = *denominator;
+		while (a != 0 && b != 0)
+		{
+			if (a > b)
+				a %= b;
+			else
+				b %= a;
+		}
+		*numerator /= a + b;
+		*denominator /= a + b;
     }
 
-    ~point()
+	void show_impoper_fraction() {
+		int integer = *numerator / *denominator;
+		int numerator = *this->numerator % *denominator;
+		cout << integer << " " << numerator << "/" << *denominator << endl;
+	}
+
+	void show_decimal_fraction() {
+		cout << (double)*numerator / *denominator << endl;
+	}
+
+    void show()
+    {
+		char horizontal_line = 196;
+		int temp = *numerator;
+		int temp2 = *denominator;
+		int count = 0;
+		int count2 = 0;
+        while (temp != 0) {
+			temp = temp / 10;
+			count++;
+        }
+        while (temp2 != 0) {
+			temp2 = temp2 / 10;
+			count2++;
+        }
+		int max = count > count2 ? count : count2;
+		cout << *numerator << endl;
+		for (int i = 0; i < max; i++) cout << horizontal_line;
+		cout << endl;
+		cout << *denominator << endl;
+    }
+
+    ~fraction()
     {
         show_destroy_log();
-		if (pos_x != nullptr) delete pos_x;
-		if (pos_y != nullptr) delete pos_y;
+		if (numerator != nullptr) delete numerator;
+		if (denominator != nullptr) delete denominator;
     }
 };
