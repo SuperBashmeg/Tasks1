@@ -1,16 +1,24 @@
 #include "lib.h"
 
+int removeDigits(int number) {
+	int result = 0;
+	int multiplier = 1;
+	while (number != 0) {
+		int digit = number % 10;
+		if (digit != 3 && digit != 6) {
+			result += digit * multiplier;
+			multiplier *= 10;
+		}
+		number /= 10;
+	}
+	return result;
+}
 
 int main() {
-	//Підрахувати кількість цілих чисел у діапазоні від 100 до 999, у яких усі цифри різні.
-	int count = 0;
-	for (int i = 100; i < 1000; i++) {
-		int a = i / 100;
-		int b = (i / 10) % 10;
-		int c = i % 10;
-		if (a != b && a != c && b != c) {
-			count++;
-		}
-	}
-	cout << "Count: " << count << endl;
+	int number;
+	cout << "Enter number: ";
+	cin >> number;
+	cout << "Result: " << removeDigits(number) << endl;
+
+	return 0;
 }
