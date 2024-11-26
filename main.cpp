@@ -41,6 +41,7 @@ void displayArrayWithSums(int rows, int cols, int arr[][100], int rowSums[], int
     cout << "| " << totalSum << endl;
 }
 
+
 int main() {
     srand(time(0));
 
