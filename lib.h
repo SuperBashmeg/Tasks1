@@ -5,5 +5,6 @@
 #include <windows.h>
 #include <ctime>
 #include <cmath>
+#include <algorithm>
 
 using namespace std;
