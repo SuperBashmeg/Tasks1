@@ -8,55 +8,42 @@ void fillArray(int rows, int cols, int arr[][100], int minVal, int maxVal) {
     }
 }
 
-void calculateSums(int rows, int cols, int arr[][100], int rowSums[], int colSums[], int& totalSum) {
-    totalSum = 0;
-    for (int i = 0; i < rows; ++i) rowSums[i] = 0;
-    for (int j = 0; j < cols; ++j) colSums[j] = 0;
 
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            rowSums[i] += arr[i][j];
-            colSums[j] += arr[i][j];
-            totalSum += arr[i][j];
+void generateSecondArray(int arr1[][100], int rows1, int cols1, int arr2[][100]) {
+    for (int i = 0; i < rows1; ++i) {
+        for (int j = 0; j < 5; ++j) {
+
+            arr2[i][j] = arr1[i][j * 2] + arr1[i][j * 2 + 1];
         }
     }
 }
 
-void displayArrayWithSums(int rows, int cols, int arr[][100], int rowSums[], int colSums[], int totalSum) {
+
+void displayArray(int rows, int cols, int arr[][100], const string& title) {
+    cout << title << endl;
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
             cout << arr[i][j] << "\t";
         }
-        cout << "| " << rowSums[i] << endl;
-    }
-
-    for (int j = 0; j < cols; ++j) {
-        cout << "--------";
+        cout << endl;
     }
     cout << endl;
-
-    for (int j = 0; j < cols; ++j) {
-        cout << colSums[j] << "\t";
-    }
-    cout << "| " << totalSum << endl;
 }
 
 int main() {
     srand(time(0));
 
-    const int rows = 3;
-    const int cols = 4;
-    int arr[100][100];
-    int rowSums[100];
-    int colSums[100];
-    int totalSum = 0;
+    const int rows1 = 5, cols1 = 10;
+    const int rows2 = 5, cols2 = 5;
+    int arr1[100][100];
+    int arr2[100][100];
 
-    fillArray(rows, cols, arr, 0, 9);
+    fillArray(rows1, cols1, arr1, 0, 50);
 
-    calculateSums(rows, cols, arr, rowSums, colSums, totalSum);
+    generateSecondArray(arr1, rows1, cols1, arr2);
 
-    cout << "Array with sums:\n";
-    displayArrayWithSums(rows, cols, arr, rowSums, colSums, totalSum);
+    displayArray(rows1, cols1, arr1, "First Array (5x10):");
+    displayArray(rows2, cols2, arr2, "Second Array (5x5):");
 
     return 0;
 }
